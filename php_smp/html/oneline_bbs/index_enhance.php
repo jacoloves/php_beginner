@@ -65,7 +65,9 @@ try {
     $posts = array();
 
     if ($result !== false && $result->rowCount()) {
-        while ($post = $result->fetch(PDO::FETCH_ASSOC))
+        while ($post = $result->fetch(PDO::FETCH_ASSOC)) {
+            $posts[] = $post;
+        }
     }
 } catch (Exception $e) {
     die('データを閲覧できません: ' . $e);
@@ -98,17 +100,16 @@ $dbh = null;
         ひとこと： <input type="text" name="comment" size="60"><br>
         <input type="submit" name="submit" value="送信">
     </form>
-    <?php  ?>
+    <?php if (count($posts) > 0): ?>
     <ul>
-        <?php while (): ?>
+        <?php foreach ($posts as $post): ?>
         <li>
             <?php echo htmlspecialchars($post['name'].':', ENT_QUOTES, 'UTF-8'); ?>
             <?php echo htmlspecialchars($post['comment'], ENT_QUOTES, 'UTF-8'); ?>
             - <?php echo htmlspecialchars($post['created_at'], ENT_QUOTES, 'UTF-8'); ?>
         </li>
-        <?php endwhile; ?>
+        <?php endforeach; ?>
     </ul>
     <?php endif; ?>
-
     </body>
 </html>
