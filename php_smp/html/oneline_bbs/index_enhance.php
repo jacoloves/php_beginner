@@ -52,6 +52,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+try {
+    $dsn = "mysql:dbname=oneline_bbs;host=mysql;charset=utf8";
+    $user = 'root';
+    $password = 'root';
+    $dbh = new PDO($dsn, $user, $password);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "SELECT * FROM post ORDER BY created_at DESC ";
+    $result = $dbh->query($sql);
+
+    $posts = array();
+
+    if ($result !== false && $result->rowCount()) {
+        while ($post = $result->fetch(PDO::FETCH_ASSOC))
+    }
+} catch (Exception $e) {
+    die('データを閲覧できません: ' . $e);
+}
+
+$result = null;
+$dbh = null;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -77,22 +98,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ひとこと： <input type="text" name="comment" size="60"><br>
         <input type="submit" name="submit" value="送信">
     </form>
-    <?php 
-    try {
-        $dsn = "mysql:dbname=oneline_bbs;host=mysql;charset=utf8";
-        $user = 'root';
-        $password = 'root';
-        $dbh = new PDO($dsn, $user, $password);
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM post ORDER BY created_at DESC ";
-        $result = $dbh->query($sql);
-    } catch (Exception $e) {
-        die('データを閲覧できません: ' . $e);
-    }
-    ?>
-    <?php if($result !== false && $result->rowCount()): ?>
+    <?php  ?>
     <ul>
-        <?php while ($post = $result->fetch(PDO::FETCH_ASSOC)): ?>
+        <?php while (): ?>
         <li>
             <?php echo htmlspecialchars($post['name'].':', ENT_QUOTES, 'UTF-8'); ?>
             <?php echo htmlspecialchars($post['comment'], ENT_QUOTES, 'UTF-8'); ?>
@@ -102,9 +110,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </ul>
     <?php endif; ?>
 
-    <?php
-        $RESULT = null;
-        $dbh = null;
-    ?>
-</body>
+    </body>
 </html>
