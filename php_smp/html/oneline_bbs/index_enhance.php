@@ -1,10 +1,9 @@
 <?php
 // DB Connect
+require_once 'db_access_div.php';
+
 try {
-    $dsn = "mysql:dbname=oneline_bbs;host=mysql;charset=utf8";
-    $user = 'root';
-    $password = 'root';
-    $dbh = new PDO($dsn, $user, $password);
+    $dbh = get_pdo();
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     die('データベースに接続できません: ' . $e);
@@ -54,12 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 try {
-    $dsn = "mysql:dbname=oneline_bbs;host=mysql;charset=utf8";
-    $user = 'root';
-    $password = 'root';
-    $dbh = new PDO($dsn, $user, $password);
+    $dbh = get_pdo();
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "SELECT * FROM post ORDER BY created_at DESC ";
+    $sql = "SELECT * FROM post ORDER BY created_at ASC ";
     $result = $dbh->query($sql);
 
     $posts = array();
