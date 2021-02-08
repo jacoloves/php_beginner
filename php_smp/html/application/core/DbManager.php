@@ -24,7 +24,7 @@ class DbManager
 
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $this->connections[$name];
+        $this->connections[$name] = $con;
     }
 
     public function getConnection($name = null)

@@ -31,7 +31,7 @@ abstract class Application
     protected function initialize()
     {
         $this->request = new Request();
-        $this->response = new Responce();
+        $this->response = new Response();
         $this->session = new Session();
         $this->db_manager = new DbManager();
         $this->router = new Router($this->registerRoutes());
@@ -100,7 +100,7 @@ abstract class Application
             }
 
             $controller = $params['controller'];
-            $action = $param['action'];
+            $action = $params['action'];
 
             $this->runAction($controller, $action, $params);
 

@@ -67,7 +67,7 @@ class Request
         return '';
     }
 
-    public function getPathInfop()
+    public function getPathInfo()
     {
         $base_url = $this->getBaseUrl();
         $request_uri = $this->getRequestUri();

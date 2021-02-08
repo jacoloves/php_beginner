@@ -45,7 +45,7 @@ abstract class Controller
         $defaults = array(
             'request'  => $this->request,
             'base_url' => $this->request->getBaseUrl(),
-            'session'  => $this->session;
+            'session'  => $this->session,
         );
 
         $view = new View($this->application->getViewDir(), $defaults);
@@ -61,7 +61,7 @@ abstract class Controller
 
     protected function forword404()
     {
-        throw new HttpNotFoundException('Forward 404 page from ' . $this->action_name);
+        throw new HttpNotFoundException('Forward 404 page from ' . $this->controller_name . '/' . $this->action_name);
     }
 
     protected function redirect($url)
