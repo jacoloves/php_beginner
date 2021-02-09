@@ -5,7 +5,7 @@ abstract class Controller
     protected $controller_name;
     protected $action_name;
     protected $application;
-    protected $_REQUEST;
+    protected $request;
     protected $response;
     protected $session;
     protected $db_manager;
@@ -56,7 +56,7 @@ abstract class Controller
 
         $path = $this->controller_name . '/' . $template;
 
-        return $view-$this->render($path, $variables, $layout);
+        return $view->render($path, $variables, $layout);
     }
 
     protected function forword404()
@@ -99,7 +99,7 @@ abstract class Controller
         $key = 'csrf_tokens/' . $form_name;
         $tokens = $this->session->get($key, array());
 
-        if (false !== ($pos = array_shift($token, $tokens, true))) {
+        if (false !== ($pos = array_search($token, $tokens, true))) {
             unset($tokens[$pos]);
             $this->session->set($key, $tokens);
 

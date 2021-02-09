@@ -20,8 +20,9 @@ class Router
                     $name = substr($token, 1);
                     $token = '(?P<' . $name . '>[^/]+)';
                 }
-                $token[$i] = $token;
+                $tokens[$i] = $token;
             }
+
 
             $pattern = '/' . implode('/', $tokens);
             $routes[$pattern] = $params;
@@ -40,7 +41,7 @@ class Router
             if (preg_match('#^' . $pattern . '$#', $path_info, $matches)) {
                 $params = array_merge($params, $matches);
 
-                return;
+                return $params;
             }
         }
 
