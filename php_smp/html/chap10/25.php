@@ -4,3 +4,9 @@ if (isset($_GET['dir']) === true) {
 } else {
     $dir = '/';
 }
+
+echo "<pre>";
+if (file_exists($dir) && is_dir($dir)) {
+    system('ls -la ' . escapeshellarg($dir));
+}
+echo "</pre>";
