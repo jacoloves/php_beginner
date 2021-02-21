@@ -16,19 +16,21 @@ for ($i = 1; $i <= $m; $i++) {
 $time_cnt = 0;
 $arr_cnt = 0;
 for ($i = 0; $i <= $t; $i += 0.5) {
-    echo "\$i:" . $i . PHP_EOL;
-    echo "\$n:" . $n . PHP_EOL;
-    echo "\$time_cnt:" . $time_cnt . PHP_EOL;
-    echo "\$arr_cnt:" . $arr_cnt . PHP_EOL;
-    echo "---------------------------------" . PHP_EOL;
+//    echo "\$i:" . $i . PHP_EOL;
+//    echo "\$n:" . $n . PHP_EOL;
+//    echo "\$time_cnt:" . $time_cnt . PHP_EOL;
+//    echo "\$arr_cnt:" . $arr_cnt . PHP_EOL;
+//    echo "---------------------------------" . PHP_EOL;
     if ($arr_cnt < $m) {
         if (($i === $time_cnt+0.5) && ((float)$arr[$arr_cnt][0] > $i) && ($n !== 0)) {
             $n--;
             $time_cnt++;
         }
-        elseif (((float)$arr[$arr_cnt][0] <= $i && $i <= (float)$arr[$arr_cnt][1]) && ($n < $max_n)) {
-            if ($i === $time_cnt+0.5) {
+        elseif (((float)$arr[$arr_cnt][0] <= $i && $i <= (float)$arr[$arr_cnt][1])) {
+            if (($i === $time_cnt+0.5) && ($n < $max_n)) {
                 $n++;
+                $time_cnt++;
+            } elseif ($i === $time_cnt+0.5) {
                 $time_cnt++;
             }
         }
