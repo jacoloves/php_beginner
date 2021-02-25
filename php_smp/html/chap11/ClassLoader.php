@@ -34,8 +34,20 @@ class ClassLoader
                         . DIRECTORY_SEPARATOR
                         . str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
 
-                    if (is_file($path))
+                    if (is_file($path)) {
+                        require $path;
+                        return true;
+                    }
                 }
+            }
+        } elseif (isset($this->namespaces[''])) {
+            $dir = $this->namespaces[''];
+            $path = $dir . DIRECTORY_SEPARATOR
+                . str_replace('_', DIRECTORY_SEPARATOR. $class) . '.php';
+
+            if (is_file($path)) {
+                require $path;
+                return true;
             }
         }
     }
