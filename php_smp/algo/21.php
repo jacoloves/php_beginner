@@ -2,10 +2,9 @@
 
 [$V, $T, $S, $D] = fscanf(STDIN, str_repeat("%d", 4));
 
-$tmp = $S -$T;
-$tmp_v = $V*$tmp;
+$div = $D / $V;
 
-if ($tmp_v >= $D) {
+if ($div < $T || $S < $div) {
     echo "Yes" . PHP_EOL;
 } else {
     echo "No" . PHP_EOL;
