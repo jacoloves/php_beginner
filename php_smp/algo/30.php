@@ -2,15 +2,11 @@
 
 [$A, $B, $W] = fscanf(STDIN, str_repeat("%d", 3));
 
-$W = $W * 1000;
+$N = floor(1000*$W/$A);
+$S = ceil(1000*$W/$B);
 
-
-$min = $W / $A;
-$max = $W / $B;
-
-if ($min != 0) {
-    $sub_a = $A+10;
-    for ($i = $min; $i == 0; --$i) {
-
-    }
+if ($S > $N) {
+    echo "UNSATISFIABLE";
+} else {
+    echo $S . ' ' . $N;
 }
